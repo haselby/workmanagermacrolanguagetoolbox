@@ -43,7 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         vscode.workspace.openTextDocument(macroFilePath).then((document) => {
-            vscode.window.showTextDocument(document);
+            vscode.window.showTextDocument(document, { preview: false });
         });
     });
 
