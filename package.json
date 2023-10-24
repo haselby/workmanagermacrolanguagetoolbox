@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "workmanagermacrolanguagetoolbox.helloWorld",
-        "title": "Hello World"
+        "command": "workmanagermacrolanguagetoolbox.goToMacroDefinition",
+        "title": "Go to Macro Definition"
       }
     ]
   },
