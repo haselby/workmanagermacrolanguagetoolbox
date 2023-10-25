@@ -22,6 +22,8 @@ None
 
 ## Release Notes
 
+None
+
 ### 0.0.1
 
 Pre-release of WorkManager Macro Language Toolbox Extension
