@@ -1,0 +1,52 @@
+on: push
+jobs: 
+  build-project:
+    name: Build VS Code Extension
+    runs-on: windows-latest
+    steps:
+      - name: Check Node version
+        run: node --version
+      - name: Check NPM Version
+        run: npm --version
+      - name: Install required NPM Package
+        run: npm install -g @vscode/vsce
+      - name: Checkout code from GitHub
+        uses: actions/checkout@v3
+      - name: Add node_modules folder
+        run: npm install
+      - name: Build VSIX
+        run: vsce package
+      - name: Upload VSCode Extension Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: VSCode-Extension
+          path: workmanagermacrolanguagetoolbox-0.0.1.vsix
+  release-project:
+    name: Release VS Code Extension
+    runs-on: windows-latest
+    needs: build-project
+    steps:
+      - name: Download VSCode Extension Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: VSCode-Extension
+      - name: Check Downloaded Artifact
+        run: ls -R
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./workmanagermacrolanguagetoolbox-0.0.1.vsix
+          asset_name: workmanagermacrolanguagetoolbox-0.0.1.vsix
+          asset_content_type: application/zip
