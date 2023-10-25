@@ -17,7 +17,16 @@
         "command": "workmanagermacrolanguagetoolbox.goToMacroDefinition",
         "title": "Go to Macro Definition"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "workmanagermacrolanguagetoolbox.goToMacroDefinition",
+          "group": "navigation",
+          "when": "editorTextFocus"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
