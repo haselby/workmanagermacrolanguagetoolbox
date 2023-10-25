@@ -23,7 +23,7 @@
         {
           "command": "workmanagermacrolanguagetoolbox.goToMacroDefinition",
           "group": "navigation",
-          "when": "editorTextFocus"
+          "when": "editorTextFocus && editorLangId == 'wm'"
         }
       ]
     }
