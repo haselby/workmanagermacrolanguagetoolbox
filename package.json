@@ -47,5 +47,11 @@
     "mocha": "^10.2.0",
     "typescript": "^5.2.2",
     "@vscode/test-electron": "^2.3.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haselby/workmanagermacrolanguagetoolbox.git"
+  },
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/haselby/workmanagermacrolanguagetoolbox"
 }
